@@ -48,4 +48,26 @@ userRouter.post('/', (req, res) => {
     return res.status(201).send(newUser);
 });
 
+userRouter.patch('/:id', (req, res) => {
+    
+    const { id } = req.params;
+    const userToUpdate = parsedUsers.find(p => p.id === id);
+
+    if (!userToUpdate) {
+        return res.status(404).send('User not found');
+    }
+    
+    // Updating the existing properties
+    Object.keys(req.body).forEach(p => {
+        if (req.body[p] && userToUpdate[p]) {
+            userToUpdate[p] = req.body[p];
+        }
+    });
+    
+    // writing to the database
+    fs.writeFileSync(path.join('data', 'users.json'), JSON.stringify(parsedUsers));
+
+    return res.status(200).send(userToUpdate);
+});
+
 export default userRouter;
