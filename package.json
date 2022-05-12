@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/lucianofraga/nodejs-crud-api#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
